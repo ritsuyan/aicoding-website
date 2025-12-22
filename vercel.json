@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "astro",
+  "build": {
+    "env": {
+      "ASTRO_VERSION": "4.0.2"
+    }
+  }
+}
