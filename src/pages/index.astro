@@ -1,0 +1,40 @@
+---
+import type { IFrontmatter } from 'astro-boilerplate-components';
+
+import { CTA } from '@/partials/CTA';
+import { Hero } from '@/partials/Hero';
+import { ProjectList } from '@/partials/ProjectList';
+import { RecentPosts } from '@/partials/RecentPosts';
+import { Sponsors } from '@/partials/Sponsors';
+import Base from '@/templates/Base.astro';
+import { AppConfig } from '@/utils/AppConfig';
+import { sortByDate } from '@/utils/Posts';
+
+const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
+const sortedPosts = sortByDate(allPosts);
+const lastThreePosts = sortedPosts.slice(0, 3);
+
+const { title } = { title: ', I\'m Ixartz 👋' };
+const { description } = { description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada nisi tellus, non imperdiet nisi tempor at. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.' };
+---
+
+<Base head={{ title, description }}>
+  <Hero />
+  <Sponsors />
+  <div class="projects">
+  <div class="project-card">
+    <h3>AI客服系统</h3>
+    <p>智能客服解决方案，提升客户服务效率</p>
+  </div>
+  <div class="project-card">
+    <h3>DeFi智能体</h3>
+    <p>自动化 DeFi 交易与资产管理工具</p>
+  </div>
+  <div class="project-card">
+    <h3>AI写作助手</h3>
+    <p>基于 GPT 的智能写作辅助工具</p>
+  </div>
+</div>
+  <RecentPosts postList={lastThreePosts} />
+  <CTA />
+</Base>

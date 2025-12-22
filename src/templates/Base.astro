@@ -1,0 +1,68 @@
+---
+import { Footer } from '@/partials/Footer';
+import { Navbar } from '@/partials/Navbar';
+import { AppConfig } from '@/utils/AppConfig';
+
+export interface Props {
+  head: {
+    title: string;
+    description: string;
+  };
+}
+
+const {
+  head: { title, description },
+} = Astro.props as Props;
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>{title}</title>
+    <meta name='description' content={description} />
+    <meta name='author' content={AppConfig.author} />
+
+    <link rel='alternate' type='application/rss+xml' href='/rss.xml' />
+    <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+  </head>
+  <body class='bg-slate-900 text-gray-100'>
+    <Navbar />
+
+    <slot></slot>
+<script>
+ window.difyChatbotConfig = {
+  token: 'fCO1m1qK714QSbQr',
+  inputs: {
+    // You can define the inputs from the Start node here
+    // key is the variable name
+    // e.g.
+    // name: "NAME"
+  },
+  systemVariables: {
+    // user_id: 'YOU CAN DEFINE USER ID HERE',
+    // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
+  },
+  userVariables: {
+    // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
+    // name: 'YOU CAN DEFINE USER NAME HERE',
+  },
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="fCO1m1qK714QSbQr"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+  }
+</style>
+    <Footer />
+  </body>
+</html>
